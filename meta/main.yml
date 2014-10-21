@@ -1,0 +1,12 @@
+---
+galaxy_info:
+  author: Adel Qalieh
+  description: Install Ghost - Just a blogging platform
+  min_ansible_version: 1.4
+  version: 0.0.1
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+      categories:
+        - web
