@@ -36,3 +36,19 @@
   npm: >
     path={{ blog_user_home }}/ghost
     production=yes
+
+- name: Copy Ghost nginx config
+  sudo: yes
+  template: >
+    src=ghost-nginx.j2
+    dest=/etc/nginx/sites-available/ghost
+    owner=root group=root mode=644
+  notify: restart nginx
+
+- name: Make site available in nginx
+  sudo: yes
+  file: >
+    src=/etc/nginx/sites-available/ghost
+    dest=/etc/nginx/sites-enabled/ghost
+    owner=root group=root state=link
+  notify: restart nginx
