@@ -8,3 +8,31 @@
 - name: Install Node.js
   sudo: yes
   apt: pkg=nodejs
+
+- name: Create blog user for Ghost
+  sudo: yes
+  user: >
+    name={{ blog_user }}
+    comment=Ghost
+    home={{ blog_user_home }}
+    shell=/bin/bash
+
+- name: Download Ghost
+  sudo: yes
+  get_url: >
+    url={{ ghost_zip_url }}
+    dest={{ blog_user_home }}/ghost.zip
+    owner={{ blog_user }} group={{ blog_user }}
+
+- name: Expand Ghost
+  sudo: yes
+  shell: >
+    sudo unzip {{ blog_user_home }}/ghost.zip -d {{ blog_user_home }}/ghost
+    chdir={{ blog_user_home }}
+    creates={{ blog_user_home }}/ghost
+
+- name: Install Ghost dependencies
+  sudo: yes
+  npm: >
+    path={{ blog_user_home }}/ghost
+    production=yes
