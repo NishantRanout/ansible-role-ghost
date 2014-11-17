@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Requires Node.js (via `laggyluke.nodejs`).
+Requires Node.js (via the NodeSource PPA).
 
 ## Role Variables
 
@@ -23,15 +23,13 @@ HTTP port over which Ghost will be accessed.
 
 ## Dependencies
 
-  - laggyluke.nodejs
+None.
 
 ## Example Playbook
 
     - hosts: servers
       vars_files:
         - vars/main.yml
-      roles:
-        - { role: laggyluke.nodejs }
 
 *Inside `vars/main.yml`*:
 
