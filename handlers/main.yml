@@ -1,0 +1,7 @@
+- name: restart nginx
+  sudo: yes
+  service: name=nginx state=restarted
+
+- name: run ghost
+  sudo: yes
+  service: name=ghost state=started

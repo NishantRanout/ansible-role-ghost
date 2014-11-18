@@ -37,6 +37,14 @@
     owner={{ blog_user }} group={{ blog_user }}
     state=directory recurse=yes
 
+- name: Install Ghost service
+  sudo: yes
+  template: >
+    src=ghost-service.j2
+    dest=/etc/init/ghost.conf
+    owner=root group=root mode=644
+  notify: run ghost
+
 - name: Copy Ghost nginx config
   sudo: yes
   template: >
