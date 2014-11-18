@@ -30,6 +30,13 @@
     path={{ blog_user_home }}/ghost
     production=yes
 
+- name: Change directory owner
+  sudo: yes
+  file: >
+    path={{ blog_user_home }}/ghost
+    owner={{ blog_user }} group={{ blog_user }}
+    state=directory recurse=yes
+
 - name: Copy Ghost nginx config
   sudo: yes
   template: >
