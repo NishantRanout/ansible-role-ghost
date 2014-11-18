@@ -16,6 +16,7 @@
     url={{ ghost_zip_url }}
     dest={{ blog_user_home }}/ghost.zip
     owner={{ blog_user }} group={{ blog_user }}
+  notify: run ghost
 
 - name: Expand Ghost
   sudo: yes
@@ -37,6 +38,7 @@
   npm: >
     path={{ blog_user_home }}/ghost
     production=yes
+  notify: run ghost
 
 - name: Change directory owner
   sudo: yes
