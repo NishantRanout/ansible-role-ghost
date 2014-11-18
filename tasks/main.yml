@@ -24,6 +24,14 @@
     chdir={{ blog_user_home }}
     creates={{ blog_user_home }}/ghost
 
+- name: Copy Ghost config
+  sudo: yes
+  template: >
+    src=ghost-config.j2
+    dest={{ blog_user_home }}/ghost/config.js
+    owner={{ blog_user }} group={{ blog_user }}
+  notify: run ghost
+
 - name: Install Ghost dependencies
   sudo: yes
   npm: >
